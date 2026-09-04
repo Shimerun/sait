@@ -37,10 +37,32 @@ body {
   background:
     radial-gradient(circle at top left, rgba(184, 134, 59, 0.08), transparent 24%),
     radial-gradient(circle at bottom right, rgba(63, 108, 81, 0.08), transparent 28%),
-    var(--ink);
+    linear-gradient(180deg, #f5efe7 0%, #f9f6f2 100%);
   color: var(--text);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.12), rgba(255,255,255,0.12)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(22,35,43,0.015),
+      rgba(22,35,43,0.015) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+main, nav.tabs, header.site, footer {
+  position: relative;
+  z-index: 1;
 }
 
 #progress-bar {
