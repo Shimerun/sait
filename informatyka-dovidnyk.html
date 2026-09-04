@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кабінет інформатики — довідник</title>
+<meta name="description" content="Критерії оцінювання з інформатики, вимоги до роботи з ПК та принципи академічної доброчесності — в одному довіднику з пошуком і тестом-самоперевіркою.">
+<meta property="og:title" content="Кабінет інформатики — довідник">
+<meta property="og:description" content="Критерії оцінювання, техніка безпеки за ПК та академічна доброчесність для учнів і вчителів інформатики.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#16232B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2316232B'/%3E%3Ctext x='50' y='66' font-size='46' font-family='monospace' font-weight='700' fill='%23B8863B' text-anchor='middle'%3E%7B%7D%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#16232B;
+    --ink-soft:#22333B;
+    --paper:#F1ECDD;
+    --paper-raised:#FAF7EE;
+    --line:#D8CFB6;
+    --text:#20241F;
+    --text-soft:#514F42;
+    --gold:#B8863B;
+    --gold-deep:#8C6529;
+    --red:#B23A2E;
+    --red-deep:#8A2C22;
+    --green:#3F6C51;
+    --green-deep:#2E5039;
+    --radius:4px;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Inter', -apple-system, Segoe UI, sans-serif;
+    --mono:'JetBrains Mono', Menlo, monospace;
+  }
+  [data-theme="dark"]{
+    --paper:#1C2622;
+    --paper-raised:#233530;
+    --line:#3A4A43;
+    --text:#EDE7D6;
+    --text-soft:#AFAA96;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- PROGRESS BAR ---------- */
+  #progress-bar{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--gold), var(--red), var(--green));
+    z-index:200; transition:width .08s linear;
+  }
+
+  /* ---------- HEADER ---------- */
+  header.site{
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-soft) 100%);
+    color:var(--paper);
+    padding:56px 24px 40px;
+    text-align:left;
+    position:relative;
+    overflow:hidden;
+  }
+  header.site::after{
+    content:""; position:absolute; right:-60px; top:-60px;
+    width:280px; height:280px; border:1px solid rgba(241,236,221,0.12); border-radius:50%;
+  }
+  header.site::before{
+    content:""; position:absolute; right:10px; top:30px;
+    width:180px; height:180px; border:1px solid rgba(241,236,221,0.08); border-radius:50%;
+  }
+  .circuit-deco{position:absolute; right:0; bottom:-10px; width:340px; max-width:44vw; height:auto; opacity:.14; pointer-events:none;}
+  .header-inner{max-width:900px; margin:0 auto; position:relative; z-index:1;}
+  .brand-row{display:flex; align-items:center; gap:12px; margin-bottom:20px;}
+  .brand-mark{
+    width:38px; height:38px; flex:none; border:1px solid rgba(241,236,221,.4); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-weight:700; font-size:12px; color:var(--gold); letter-spacing:-.02em;
+  }
+  .brand-label{font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:#C9C3AE;}
+  h1.site-title{font-family:var(--serif); font-weight:600; font-size:clamp(32px,5vw,50px); line-height:1.1; margin:0 0 16px; max-width:15ch;}
+  .site-sub{font-size:17px; line-height:1.62; color:#D9D2BE; max-width:58ch; margin:0;}
+
+  /* ---------- TABS + UTILITY BAR ---------- */
+  nav.tabs{position:sticky; top:0; z-index:50; background:var(--ink-soft); border-bottom:1px solid rgba(241,236,221,.14);}
+  .tabs-inner{max-width:900px; margin:0 auto; display:flex; overflow-x:auto;}
+  .tab-btn{
+    display:flex; align-items:center; gap:8px; flex:1 1 0; background:none; border:none;
+    padding:16px 12px; font-family:var(--sans); font-weight:600; font-size:13.5px; color:#B7B2A0;
+    cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap;
+    transition:color .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .tab-btn svg{width:18px; height:18px; flex:none; opacity:.75;}
+  .tab-btn:hover{color:var(--paper); background:rgba(241,236,221,.04);}
+  .tab-btn[aria-selected="true"]{color:var(--paper);}
+  .tab-btn[aria-selected="true"] svg{opacity:1;}
+  .tab-btn[data-tab="home"][aria-selected="true"]{border-color:#C9C3AE; color:var(--paper);}
+  .tab-btn[data-tab="grading"][aria-selected="true"]{border-color:var(--gold); color:#EFD9AC;}
+  .tab-btn[data-tab="safety"][aria-selected="true"]{border-color:var(--red); color:#E7B4AD;}
+  .tab-btn[data-tab="integrity"][aria-selected="true"]{border-color:var(--green); color:#A9CBB4;}
+  .tab-btn[data-tab="quiz"][aria-selected="true"]{border-color:#8FA8C9; color:#C7D6E8;}
+  .tab-btn[data-tab="faq"][aria-selected="true"]{border-color:#C9C3AE; color:var(--paper);}
+
+  .utility-bar{
+    max-width:900px; margin:0 auto; display:flex; align-items:center; gap:10px;
+    padding:9px 24px; border-top:1px solid rgba(241,236,221,.08);
+    flex-wrap:wrap;
+  }
+  .search-wrap{position:relative; flex:1 1 200px; min-width:160px;}
+  #site-search{
+    width:100%; background:rgba(241,236,221,.08); border:1px solid rgba(241,236,221,.18);
+    border-radius:20px; padding:8px 14px; font-size:13px; color:var(--paper); font-family:var(--sans);
+  }
+  #site-search::placeholder{color:#9AA097;}
+  #site-search:focus{outline:none; border-color:var(--gold); background:rgba(241,236,221,.13);}
+  .search-results{
+    position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:60;
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:0 14px 32px rgba(0,0,0,.28); max-height:340px; overflow-y:auto;
+  }
+  .search-results[hidden]{display:none;}
+  .search-item{padding:10px 14px; border-top:1px solid var(--line); cursor:pointer; display:flex; flex-direction:column; gap:2px;}
+  .search-item:first-child{border-top:none;}
+  .search-item:hover{background:rgba(184,134,59,.08);}
+  .search-item .si-tab{font-family:var(--mono); font-size:10.5px; color:var(--gold-deep); text-transform:uppercase; letter-spacing:.04em;}
+  .search-item .si-text{font-size:13px; color:var(--text); line-height:1.4;}
+  .search-empty{padding:14px; font-size:13px; color:var(--text-soft);}
+
+  .util-btn{
+    background:none; border:1px solid rgba(241,236,221,.22); color:#D9D2BE;
+    width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:background .15s ease, color .15s ease; flex:none;
+  }
+  .util-btn:hover{background:rgba(241,236,221,.1); color:var(--paper);}
+  .util-btn svg{width:16px; height:16px;}
+  .fs-group{display:flex; align-items:center; gap:2px; border:1px solid rgba(241,236,221,.22); border-radius:20px; padding:2px;}
+  .fs-group button{background:none; border:none; color:#D9D2BE; font-family:var(--mono); font-size:12px; width:26px; height:26px; border-radius:50%; cursor:pointer;}
+  .fs-group button:hover{background:rgba(241,236,221,.12); color:var(--paper);}
+
+  /* ---------- MAIN LAYOUT ---------- */
+  main{background:var(--paper); min-height:60vh;}
+  .panel{display:none; max-width:900px; margin:0 auto; padding:52px 24px 96px;}
+  .panel.active{display:block; animation:fade .4s cubic-bezier(.2,.8,.2,1);}
+  @keyframes fade{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+
+  .panel-head{margin-bottom:36px;}
+  .panel-kicker{font-family:var(--mono); font-size:12.5px; letter-spacing:.04em; margin-bottom:10px; display:inline-block; padding:3px 9px; border-radius:2px;}
+  #grading .panel-kicker{color:var(--gold-deep); background:rgba(184,134,59,.14);}
+  #safety .panel-kicker{color:var(--red-deep); background:rgba(178,58,46,.12);}
+  #integrity .panel-kicker{color:var(--green-deep); background:rgba(63,108,81,.13);}
+  #quiz .panel-kicker{color:#3E5E82; background:rgba(94,140,183,.14);}
+  #faq .panel-kicker{color:var(--text-soft); background:rgba(90,88,74,.1);}
+
+  h2.panel-title{font-family:var(--serif); font-weight:600; font-size:clamp(26px,3.4vw,36px); margin:0 0 14px; line-height:1.15;}
+  .panel-intro{font-size:16.5px; line-height:1.68; color:var(--text-soft); max-width:64ch;}
+  .panel-intro strong{color:var(--text); font-weight:600;}
+  h3.block-title{font-family:var(--serif); font-size:20px; font-weight:600; margin:44px 0 6px;}
+  p.block-lead{font-size:15.5px; line-height:1.7; color:var(--text-soft); max-width:66ch; margin:0 0 18px;}
+
+  /* ---------- HOME PANEL ---------- */
+  .home-hero{max-width:68ch;}
+  .home-hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(28px,3.6vw,38px); line-height:1.16; margin:0 0 16px;}
+  .home-hero p{font-size:16.5px; line-height:1.68; color:var(--text-soft); margin:0;}
+  .home-tri-rule{height:4px; width:220px; max-width:60%; border-radius:2px; margin:30px 0 38px;
+    background:linear-gradient(90deg, var(--gold) 0 33.3%, var(--red) 33.3% 66.6%, var(--green) 66.6% 100%);}
+  .home-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-bottom:44px;}
+  .home-stats .stat-card:nth-child(1) .num{color:var(--gold-deep);}
+  .home-stats .stat-card:nth-child(2) .num{color:var(--red-deep);}
+  .home-stats .stat-card:nth-child(3) .num{color:var(--green-deep);}
+  .home-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:8px;}
+  .home-card{
+    position:relative; background:var(--paper-raised); border:1px solid var(--line); border-top:3px solid transparent;
+    border-radius:var(--radius); padding:24px 22px 22px; text-align:left; cursor:pointer;
+    display:flex; flex-direction:column; gap:12px; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .home-card:hover{transform:translateY(-3px); box-shadow:0 14px 28px rgba(22,35,43,.12);}
+  .home-card[data-goto="grading"]{border-top-color:var(--gold);}
+  .home-card[data-goto="safety"]{border-top-color:var(--red);}
+  .home-card[data-goto="integrity"]{border-top-color:var(--green);}
+  .home-card .hc-icon{width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  .home-card .hc-icon svg{width:18px; height:18px;}
+  .home-card[data-goto="grading"] .hc-icon{background:rgba(184,134,59,.14); color:var(--gold-deep);}
+  .home-card[data-goto="safety"] .hc-icon{background:rgba(178,58,46,.12); color:var(--red-deep);}
+  .home-card[data-goto="integrity"] .hc-icon{background:rgba(63,108,81,.13); color:var(--green-deep);}
+  .home-card h3{font-family:var(--serif); font-size:19px; font-weight:600; margin:0;}
+  .home-card p{font-size:14px; line-height:1.56; color:var(--text-soft); margin:0; flex:1;}
+  .home-card .hc-go{font-family:var(--mono); font-size:11.5px; color:var(--text-soft); display:flex; align-items:center; gap:6px; margin-top:2px;}
+  .home-card .hc-go svg{width:13px; height:13px; transition:transform .18s ease;}
+  .home-card:hover .hc-go svg{transform:translateX(3px);}
+
+  .home-extra-row{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+  .home-mini-link{
+    display:flex; align-items:center; gap:8px; background:var(--paper-raised); border:1px solid var(--line);
+    border-radius:20px; padding:9px 16px; font-size:13.5px; font-weight:600; color:var(--text); cursor:pointer;
+  }
+  .home-mini-link:hover{border-color:var(--gold);}
+  .home-mini-link svg{width:15px; height:15px; color:var(--gold-deep);}
+
+  /* ---------- GRADING TABLE ---------- */
+  .level-group{border:1px solid var(--line); border-radius:var(--radius); background:var(--paper-raised); margin-bottom:16px; overflow:hidden; transition:box-shadow .18s ease;}
+  .level-group[open]{box-shadow:0 6px 18px rgba(22,35,43,.06);}
+  .level-group summary{
+    list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:16px 20px;
+    font-family:var(--serif); font-weight:600; font-size:18px; background:linear-gradient(180deg, rgba(184,134,59,.07), transparent);
+  }
+  .level-group summary::-webkit-details-marker{display:none;}
+  .level-dots{display:flex; gap:4px; flex:none;}
+  .level-dots i{width:7px; height:7px; border-radius:50%; background:var(--line); display:block;}
+  .level-dots i.on{background:var(--gold-deep);}
+  .level-group summary .range{
+    font-family:var(--mono); font-size:12.5px; font-weight:500; color:var(--gold-deep);
+    border:1px solid rgba(184,134,59,.4); padding:3px 9px; border-radius:20px; white-space:nowrap; margin-left:auto;
+  }
+  .level-group summary .chev{width:11px; height:11px; border-right:2px solid var(--text-soft); border-bottom:2px solid var(--text-soft); transform:rotate(45deg); transition:transform .2s ease; flex:none;}
+  .level-group[open] summary .chev{transform:rotate(-135deg);}
+  .grade-row{
+    display:grid; grid-template-columns:52px 1fr auto; align-items:start; gap:14px; padding:16px 20px;
+    border-top:1px solid var(--line); background:repeating-linear-gradient(180deg, transparent 0 39px, rgba(216,207,182,.5) 39px 40px);
+    scroll-margin-top:120px;
+  }
+  .grade-num{font-family:var(--mono); font-weight:700; font-size:22px; color:var(--gold-deep); line-height:1.5;}
+  .grade-text{font-size:15px; line-height:1.62; color:var(--text); padding-top:1px;}
+  .row-link{background:none; border:none; cursor:pointer; color:var(--text-soft); opacity:.5; padding:4px; flex:none;}
+  .row-link:hover{opacity:1; color:var(--gold-deep);}
+  .row-link svg{width:15px; height:15px;}
+  .flash{animation:flashBg 1.5s ease;}
+  @keyframes flashBg{0%{background-color:rgba(184,134,59,.35);} 100%{background-color:transparent;}}
+
+  /* ---------- SAFETY SECTION ---------- */
+  .voltage-note{display:flex; align-items:flex-start; gap:14px; background:repeating-linear-gradient(135deg, #B23A2E, #B23A2E 10px, #9C332A 10px, #9C332A 20px); color:#FBEFE9; padding:2px; border-radius:var(--radius); margin-bottom:8px;}
+  .voltage-note-inner{background:var(--ink); color:#F6E6E1; border-radius:2px; padding:18px 20px; display:flex; gap:14px; align-items:flex-start; width:100%;}
+  .voltage-note-inner svg{width:26px; height:26px; flex:none; color:#E7A79D;}
+  .voltage-note-inner p{margin:0; font-size:15px; line-height:1.6;}
+  .stat-row{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin:28px 0 8px;}
+  .stat-card{background:var(--paper-raised); padding:18px 14px; text-align:left;}
+  .stat-card .num{font-family:var(--mono); font-weight:700; font-size:22px; color:var(--red-deep); display:block;}
+  .stat-card .label{font-size:12.5px; color:var(--text-soft); line-height:1.4; margin-top:4px; display:block;}
+  ul.rule-list{list-style:none; margin:0; padding:0;}
+  ul.rule-list li{display:flex; gap:12px; padding:11px 0; border-top:1px solid var(--line); font-size:15px; line-height:1.6; scroll-margin-top:120px;}
+  ul.rule-list li:first-child{border-top:none;}
+  ul.rule-list li .mark{flex:none; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  ul.rule-list.deny li .mark{background:rgba(178,58,46,.12); color:var(--red-deep);}
+  ul.rule-list.allow li .mark{background:rgba(63,108,81,.13); color:var(--green-deep);}
+  ul.rule-list .mark svg{width:11px; height:11px;}
+
+  /* ---------- INTEGRITY SECTION ---------- */
+  .principle-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:8px 0 8px;}
+  .principle-card{border:1px solid var(--line); background:var(--paper-raised); border-radius:var(--radius); padding:18px 18px 16px; border-left:3px solid var(--green); transition:box-shadow .18s ease, transform .18s ease; scroll-margin-top:120px;}
+  .principle-card:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(22,35,43,.08);}
+  .principle-card .p-title{font-family:var(--serif); font-weight:600; font-size:17px; margin:0 0 6px;}
+  .principle-card .p-desc{font-size:14px; line-height:1.58; color:var(--text-soft); margin:0;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:12px;}
+  .col-card{background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius); padding:20px 20px 6px;}
+  .col-card h4{font-family:var(--serif); font-size:16px; margin:0 0 8px;}
+  .col-card.bad h4{color:var(--red-deep);}
+  .col-card.good h4{color:var(--green-deep);}
+  .consequence-strip{margin-top:36px; background:var(--ink); color:var(--paper); border-radius:var(--radius); padding:22px 24px;}
+  .consequence-strip h4{font-family:var(--serif); margin:0 0 8px; font-size:17px; color:#EFD9AC;}
+  .consequence-strip p{margin:0; font-size:14.5px; line-height:1.65; color:#D9D2BE;}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-q{border:1px solid var(--line); background:var(--paper-raised); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px;}
+  .quiz-q .q-title{font-family:var(--serif); font-size:16.5px; font-weight:600; margin:0 0 12px;}
+  .quiz-q label{display:flex; align-items:center; gap:10px; font-size:14.5px; padding:6px 0; cursor:pointer; border-radius:4px;}
+  .quiz-q label:hover{background:rgba(184,134,59,.06);}
+  .quiz-q input[type="radio"]{accent-color:var(--gold-deep); width:16px; height:16px;}
+  .quiz-q.correct{border-left:4px solid var(--green);}
+  .quiz-q.incorrect{border-left:4px solid var(--red);}
+  .quiz-q .q-feedback{display:none; font-size:13px; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); color:var(--text-soft);}
+  .quiz-q.graded .q-feedback{display:block;}
+  .quiz-actions{display:flex; align-items:center; gap:14px; margin-top:20px; flex-wrap:wrap;}
+  .quiz-btn{
+    font-family:var(--sans); font-weight:600; font-size:14px; padding:11px 22px; border-radius:24px;
+    border:none; cursor:pointer; background:var(--ink); color:var(--paper);
+  }
+  .quiz-btn:hover{background:var(--ink-soft);}
+  .quiz-btn.secondary{background:none; border:1px solid var(--line); color:var(--text);}
+  #quiz-score{font-family:var(--mono); font-weight:700; font-size:15px;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border:1px solid var(--line); background:var(--paper-raised); border-radius:var(--radius); margin-bottom:12px; overflow:hidden; scroll-margin-top:120px;}
+  .faq-item summary{list-style:none; cursor:pointer; padding:16px 20px; font-family:var(--serif); font-weight:600; font-size:16px; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary .chev{width:10px; height:10px; border-right:2px solid var(--text-soft); border-bottom:2px solid var(--text-soft); transform:rotate(45deg); transition:transform .2s ease; flex:none;}
+  .faq-item[open] summary .chev{transform:rotate(-135deg);}
+  .faq-item .faq-a{padding:0 20px 18px; font-size:14.5px; line-height:1.62; color:var(--text-soft);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:#8F9A93; padding:28px 24px 40px; font-size:12.5px; line-height:1.7; text-align:left;}
+  footer .footer-inner{max-width:900px; margin:0 auto;}
+  footer strong{color:#C9C3AE;}
+
+  /* ---------- TOAST ---------- */
+  #toast{
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--paper); padding:11px 20px; border-radius:24px; font-size:13.5px;
+    box-shadow:0 10px 24px rgba(0,0,0,.3); z-index:300; opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+  }
+  #toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:760px){
+    .home-cards{grid-template-columns:1fr;}
+    .home-stats{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    header.site{padding:40px 18px 30px;}
+    .panel{padding:36px 18px 72px;}
+    .tab-btn{font-size:12px; padding:12px 8px; gap:5px;}
+    .tab-btn svg{width:15px; height:15px;}
+    .utility-bar{padding:9px 14px;}
+    .grade-row{grid-template-columns:32px 1fr auto; gap:10px; padding:13px 14px;}
+    .stat-row{grid-template-columns:repeat(2,1fr);}
+    .principle-grid{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+    .level-group summary{padding:14px 14px; font-size:16px; flex-wrap:wrap;}
+    .circuit-deco{display:none;}
+  }
+
+  @media (prefers-reduced-motion:reduce){ *{animation:none !important; transition:none !important;} }
+
+  @media print{
+    #progress-bar, nav.tabs, header.site .circuit-deco, footer{display:none !important;}
+    body{background:#fff;}
+    main{background:#fff;}
+    .panel{display:block !important; max-width:100%; padding:10px 4px; page-break-after:always;}
+    .level-group > *:not(summary){display:block !important;}
+    .level-group summary .chev, .row-link{display:none !important;}
+    #home, #quiz{display:none !important;}
+  }
+
+  :focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="site">
+  <svg class="circuit-deco" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#F1ECDD" stroke-width="1.4">
+      <path d="M20 40 H120 V90 H220"></path>
+      <path d="M40 120 H160 V180 H260"></path>
+      <path d="M10 200 H90 V240 H200"></path>
+      <path d="M180 20 V70 H260 V150"></path>
+    </g>
+    <g fill="#F1ECDD">
+      <circle cx="20" cy="40" r="4"></circle><circle cx="120" cy="90" r="4"></circle><circle cx="220" cy="90" r="4"></circle>
+      <circle cx="40" cy="120" r="4"></circle><circle cx="160" cy="180" r="4"></circle><circle cx="260" cy="180" r="4"></circle>
+      <circle cx="90" cy="240" r="4"></circle><circle cx="200" cy="240" r="4"></circle><circle cx="180" cy="20" r="4"></circle>
+      <circle cx="260" cy="70" r="4"></circle><circle cx="260" cy="150" r="4"></circle>
+    </g>
+  </svg>
+  <div class="header-inner">
+    <div class="brand-row">
+      <div class="brand-mark">{ }</div>
+      <div class="brand-label">Кабінет інформатики · довідник</div>
+    </div>
+    <h1 class="site-title">Правила, критерії та доброчесність</h1>
+    <p class="site-sub">Три розділи, які варто знати кожному учню й учениці, плюс тест-самоперевірка та відповіді на часті питання.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner" role="tablist">
+    <button class="tab-btn" data-tab="home" role="tab" aria-selected="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Головна
+    </button>
+    <button class="tab-btn" data-tab="grading" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="14" width="4" height="6"></rect><rect x="10" y="9" width="4" height="11"></rect><rect x="16" y="4" width="4" height="16"></rect></svg>Критерії
+    </button>
+    <button class="tab-btn" data-tab="safety" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"></path><line x1="12" y1="10" x2="12" y2="14.5"></line><circle cx="12" cy="17.3" r="0.6" fill="currentColor" stroke="none"></circle></svg>Робота з ПК
+    </button>
+    <button class="tab-btn" data-tab="integrity" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.6 3.2 8.2 8 9 4.8-.8 8-4.4 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>Доброчесність
+    </button>
+    <button class="tab-btn" data-tab="quiz" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.6-2.2 2-2.2 3.6"></path><circle cx="12.1" cy="16.8" r="0.6" fill="currentColor" stroke="none"></circle></svg>Тест
+    </button>
+    <button class="tab-btn" data-tab="faq" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"></path></svg>FAQ
+    </button>
+  </div>
+  <div class="utility-bar">
+    <div class="search-wrap">
+      <input type="search" id="site-search" placeholder="Пошук по сайту…" autocomplete="off">
+      <div class="search-results" id="search-results" hidden></div>
+    </div>
+    <div class="fs-group" title="Розмір тексту">
+      <button id="fs-minus" aria-label="Зменшити текст">A−</button>
+      <button id="fs-plus" aria-label="Збільшити текст">A+</button>
+    </div>
+    <button class="util-btn" id="theme-toggle" title="Темна/світла тема">
+      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+    </button>
+    <button class="util-btn" id="print-btn" title="Роздрукувати">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+    </button>
+    <button class="util-btn" id="share-btn" title="Поділитися посиланням">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"></line><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"></line></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===================== PANEL 0 — HOME ===================== -->
+  <section id="home" class="panel active">
+    <div class="home-hero">
+      <h2>Довідник кабінету інформатики</h2>
+      <p>Цей сайт зібрав в одному місці офіційну шкалу оцінювання, правила безпечної роботи з комп'ютером і принципи академічної доброчесності. Скористайтеся пошуком угорі, пройдіть тест-самоперевірку або перегляньте відповіді на часті питання.</p>
+    </div>
+    <div class="home-tri-rule"></div>
+
+    <div class="home-stats">
+      <div class="stat-card"><span class="num">12</span><span class="label">балів у шкалі навчальних досягнень, 4 рівні</span></div>
+      <div class="stat-card"><span class="num">7</span><span class="label">дій, заборонених під час роботи з ПК</span></div>
+      <div class="stat-card"><span class="num">6</span><span class="label">принципів академічної доброчесності</span></div>
+    </div>
+
+    <div class="home-cards">
+      <div class="home-card" data-goto="grading">
+        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="14" width="4" height="6"></rect><rect x="10" y="9" width="4" height="11"></rect><rect x="16" y="4" width="4" height="16"></rect></svg></div>
+        <h3>Критерії оцінювання</h3>
+        <p>Що саме оцінюється на уроках інформатики і як улаштована шкала від 1 до 12 балів.</p>
+        <span class="hc-go">Відкрити розділ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </div>
+      <div class="home-card" data-goto="safety">
+        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"></path><line x1="12" y1="10" x2="12" y2="14.5"></line><circle cx="12" cy="17.3" r="0.6" fill="currentColor" stroke="none"></circle></svg></div>
+        <h3>Робота з ПК</h3>
+        <p>Небезпека 220 В, що категорично заборонено за комп'ютером і як організувати робоче місце.</p>
+        <span class="hc-go">Відкрити розділ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </div>
+      <div class="home-card" data-goto="integrity">
+        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.6 3.2 8.2 8 9 4.8-.8 8-4.4 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+        <h3>Доброчесність</h3>
+        <p>Що таке академічна доброчесність, чим списування відрізняється від співпраці і чим це загрожує.</p>
+        <span class="hc-go">Відкрити розділ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </div>
+    </div>
+
+    <div class="home-extra-row">
+      <div class="home-mini-link" data-goto="quiz">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.6-2.2 2-2.2 3.6"></path></svg>
+        Пройти тест-самоперевірку (8 запитань)
+      </div>
+      <div class="home-mini-link" data-goto="faq">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"></path></svg>
+        Часті питання
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PANEL 1 — GRADING ===================== -->
+  <section id="grading" class="panel">
+    <div class="panel-head">
+      <span class="panel-kicker">Оцінювання</span>
+      <h2 class="panel-title">Критерії оцінювання навчальних досягнень учнів з інформатики</h2>
+      <p class="panel-intro">До навчальних досягнень учнів з інформатики, які підлягають оцінюванню, належить <strong>теоретична база знань</strong> і <strong>практичні навички</strong>. Оцінювання здійснюється у двох аспектах: рівень володіння теоретичними знаннями та здатність застосовувати вивчений матеріал у практичній діяльності.</p>
+    </div>
+
+    <h3 class="block-title">Теоретична база знань</h3>
+    <p class="block-lead">Уявлення про інформацію, її властивості, інформаційні процеси та інформаційні системи, загальні принципи розв'язування задач за допомогою комп'ютера з використанням програмного забезпечення загального та конкретно-предметного призначення, формулювання проблем і постановку задач, побудову відповідних інформаційних моделей, основи алгоритмізації і програмування, принципи будови та дії комп'ютера, уявлення про можливості використання глобальної мережі Інтернет, пошук потрібних відомостей.</p>
+
+    <h3 class="block-title">Практичні навички</h3>
+    <p class="block-lead">Навички роботи з пристроями введення-виведення даних, прикладним програмним забезпеченням загального і навчального призначення — програмами технічного обслуговування апаратної складової, операційними системами, програмами для архівування файлів, антивірусними програмами, редакторами текстів, графічними редакторами, засобами підготовки комп'ютерних презентацій та публікацій, табличними процесорами, системами управління базами даних, інформаційно-пошуковими системами, експертними системами, мультимедійними комп'ютерними енциклопедіями, педагогічними програмними засобами для комп'ютерної підтримки навчання з різних предметів, програмами-браузерами для перегляду гіпертекстових сторінок, програмами для роботи з електронною поштою та телеконференціями, пошуку потрібних відомостей в глобальній мережі Інтернет, створення гіпертекстових сторінок тощо; навички складання, описування та реалізації найпростіших алгоритмів і програм з використанням різних засобів їх подання, зокрема деякої мови програмування.</p>
+
+    <h3 class="block-title">Чотири рівні навчальних досягнень</h3>
+    <p class="block-lead">Відповідно до ступеня оволодіння знаннями і способами діяльності виокремлюються чотири рівні навчальних досягнень школярів з інформатики. Досягнення певного рівня передбачає, що всі знання, уміння й навички, вказані для попередніх рівнів, учнем уже опановані.</p>
+
+    <div id="levels-container"></div>
+  </section>
+
+  <!-- ===================== PANEL 2 — PC SAFETY ===================== -->
+  <section id="safety" class="panel">
+    <div class="panel-head">
+      <span class="panel-kicker">Техніка безпеки</span>
+      <h2 class="panel-title">Вимоги до роботи з персональним комп'ютером</h2>
+    </div>
+
+    <div class="voltage-note">
+      <div class="voltage-note-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"></path></svg>
+        <p>Апаратура ПК використовує напругу живлення <strong>220 В</strong>, яка є небезпечною для життя людини. Необхідно знати та чітко виконувати ряд правил техніки безпеки.</p>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><span class="num">60–70 см</span><span class="label">відстань очей до екрана монітора</span></div>
+      <div class="stat-card"><span class="num">90°</span><span class="label">кут у ліктях, колінах і стегнах</span></div>
+      <div class="stat-card"><span class="num">45 хв</span><span class="label">інтервал для фізичних вправ</span></div>
+      <div class="stat-card"><span class="num">1,5 год</span><span class="label">макс. безперервна робота учня (вчителя — до 4 год)</span></div>
+    </div>
+
+    <h3 class="block-title">При роботі з ПК забороняється</h3>
+    <ul class="rule-list deny" id="deny-list"></ul>
+
+    <h3 class="block-title">Для роботи на комп'ютері необхідно</h3>
+    <ul class="rule-list allow" id="allow-list"></ul>
+  </section>
+
+  <!-- ===================== PANEL 3 — ACADEMIC INTEGRITY ===================== -->
+  <section id="integrity" class="panel">
+    <div class="panel-head">
+      <span class="panel-kicker">Доброчесність</span>
+      <h2 class="panel-title">Принципи академічної доброчесності</h2>
+      <p class="panel-intro">Академічна доброчесність — це сукупність етичних принципів і правил, якими мають керуватися учасники освітнього процесу під час навчання, викладання та провадження наукової (творчої) діяльності. Вона є основою довіри між учнем, учителем і школою.</p>
+    </div>
+
+    <h3 class="block-title">Основні принципи</h3>
+    <div class="principle-grid" id="principle-grid"></div>
+
+    <h3 class="block-title">Приклади на практиці</h3>
+    <div class="two-col">
+      <div class="col-card bad"><h4>Порушення</h4><ul class="rule-list deny" id="bad-list"></ul></div>
+      <div class="col-card good"><h4>Дотримання</h4><ul class="rule-list allow" id="good-list"></ul></div>
+    </div>
+
+    <div class="consequence-strip">
+      <h4>Наслідки порушення</h4>
+      <p>Списування, плагіат чи фальсифікація результатів фіксуються вчителем і можуть призвести до повторного виконання роботи, зниження оцінки чи додаткового опитування — залежно від тяжкості порушення та внутрішніх правил закладу освіти. Головна мета правил доброчесності — не покарання, а формування звички навчатися чесно.</p>
+    </div>
+  </section>
+
+  <!-- ===================== PANEL 4 — QUIZ ===================== -->
+  <section id="quiz" class="panel">
+    <div class="panel-head">
+      <span class="panel-kicker">Самоперевірка</span>
+      <h2 class="panel-title">Тест: перевір себе</h2>
+      <p class="panel-intro">8 запитань за матеріалами всіх трьох розділів. Оберіть відповідь і натисніть «Перевірити результат».</p>
+    </div>
+    <div id="quiz-container"></div>
+    <div class="quiz-actions">
+      <button class="quiz-btn" id="quiz-check">Перевірити результат</button>
+      <button class="quiz-btn secondary" id="quiz-reset">Спробувати ще раз</button>
+      <span id="quiz-score"></span>
+    </div>
+  </section>
+
+  <!-- ===================== PANEL 5 — FAQ ===================== -->
+  <section id="faq" class="panel">
+    <div class="panel-head">
+      <span class="panel-kicker">Часті питання</span>
+      <h2 class="panel-title">FAQ</h2>
+    </div>
+    <div id="faq-container"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <strong>Джерела.</strong> Розділ «Критерії оцінювання» — за офіційними критеріями оцінювання навчальних досягнень учнів з інформатики (інформаційних технологій) у системі загальної освіти. Розділ «Робота з ПК» — за типовими вимогами техніки безпеки під час роботи з персональним комп'ютером. Розділ «Доброчесність» підготовлено на основі загальних принципів академічної доброчесності (ст. 42 Закону України «Про освіту») й адаптовано для шкільного курсу інформатики.
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+  const denyIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>`;
+  const allowIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"></polyline></svg>`;
+  const linkIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1"></path></svg>`;
+
+  const searchIndex = [];
+
+  // ---------- DATA: GRADING LEVELS ----------
+  const levels = [
+    { id:"pochatkovyi", label:"I. Початковий", range:"1–3 бали", items:[
+      {b:1, text:"Учень (учениця) розпізнає окремі об'єкти, явища і факти предметної галузі; знає і виконує правила техніки безпеки під час роботи з комп'ютерною технікою"},
+      {b:2, text:"Учень (учениця) розпізнає окремі об'єкти, явища і факти предметної галузі та може фрагментарно відтворити знання про них"},
+      {b:3, text:"Учень (учениця) має фрагментарні знання при незначному загальному їх обсязі (менше половини навчального матеріалу) при відсутності сформованих умінь та навичок"}
+    ]},
+    { id:"seredniy", label:"II. Середній", range:"4–6 балів", items:[
+      {b:4, text:"Учень (учениця) має початковий рівень знань, значну (більше половини) частину навчального матеріалу може відтворити репродуктивно; може з допомогою вчителя виконати просте навчальне завдання; має елементарні, нестійкі навички роботи на комп'ютері"},
+      {b:5, text:"Учень (учениця) має рівень знань вищий, ніж початковий; може з допомогою вчителя відтворити значну частину навчального матеріалу з елементами логічних зв'язків; має стійкі навички виконання елементарних дій з опрацювання даних на комп'ютері"},
+      {b:6, text:"Учень (учениця) знайомий з основними поняттями навчального матеріалу; може самостійно відтворити значну частину навчального матеріалу і робити певні узагальнення; вміє за зразком виконати просте навчальне завдання; має стійкі навички виконання основних дій з опрацювання даних на комп'ютері"}
+    ]},
+    { id:"dostatniy", label:"III. Достатній", range:"7–9 балів", items:[
+      {b:7, text:"Учень (учениця) вміє застосовувати вивчений матеріал у стандартних ситуаціях; може пояснити основні процеси, що відбуваються під час роботи інформаційної системи та наводити власні приклади на підтвердження деяких тверджень; вміє виконувати навчальні завдання, передбачені програмою"},
+      {b:8, text:"Учень (учениця) вміє аналізувати навчальний матеріал, в цілому самостійно застосовувати його на практиці; контролювати власну діяльність; самостійно виправити вказані вчителем помилки; самостійно визначити спосіб розв'язування навчальної задачі; вміє використовувати довідкову систему"},
+      {b:9, text:"Учень (учениця) вільно володіє навчальним матеріалом, застосовує знання на практиці; вміє систематизувати і узагальнювати отримані відомості; самостійно виконує передбачені програмою навчальні завдання; самостійно знаходить і виправляє допущені помилки; може аргументовано обрати раціональний спосіб виконання навчального завдання; вільно володіє клавіатурою"}
+    ]},
+    { id:"vysokyi", label:"IV. Високий", range:"10–12 балів", items:[
+      {b:10, text:"Знання, вміння і навички учня (учениці) повністю відповідають вимогам державної програми. Учень (учениця) володіє міцними знаннями, самостійно визначає проміжні цілі власної навчальної діяльності, оцінює нові факти, явища; вміє самостійно знаходити додаткові відомості та використовує їх для реалізації поставлених перед ним навчальних цілей, судження його (її) логічні і достатньо обґрунтовані; має певні навички управління інформаційною системою"},
+      {b:11, text:"Учень (учениця) володіє узагальненими знаннями з предмета; вміє планувати особисту навчальну діяльність, оцінювати результати власної практичної роботи; вміє самостійно знаходити джерела різноманітних відомостей і використовувати їх відповідно до мети і завдань власної пізнавальної діяльності; використовує набуті знання і вміння у нестандартних ситуаціях; вміє виконувати завдання, не передбачені навчальною програмою; має стійкі навички управління інформаційною системою"},
+      {b:12, text:"Учень (учениця) має стійкі системні знання та продуктивно їх використовує; вміє вільно використовувати нові інформаційні технології для поповнення власних знань та розв'язування задач; має стійкі навички управління інформаційною системою у нестандартних ситуаціях"}
+    ]}
+  ];
+
+  const levelsContainer = document.getElementById("levels-container");
+  levels.forEach((lvl, idx) => {
+    const details = document.createElement("details");
+    details.className = "level-group";
+    if(idx === 0) details.open = true;
+    const dots = [0,1,2,3].map(i => `<i class="${i<=idx?'on':''}"></i>`).join("");
+    const summary = document.createElement("summary");
+    summary.innerHTML = `<span class="level-dots">${dots}</span><span>${lvl.label}</span><span class="range">${lvl.range}</span><span class="chev"></span>`;
+    details.appendChild(summary);
+    lvl.items.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "grade-row";
+      row.id = `grade-${item.b}`;
+      row.innerHTML = `<div class="grade-num">${item.b}</div><div class="grade-text">${item.text}</div><button class="row-link" data-copy="#grade-${item.b}" title="Скопіювати посилання на цей бал">${linkIcon}</button>`;
+      details.appendChild(row);
+      searchIndex.push({tab:"grading", elId:`grade-${item.b}`, parentDetails:details, text:`${item.b} балів — ${item.text}`});
+    });
+    levelsContainer.appendChild(details);
+  });
+
+  // ---------- DATA: PC SAFETY ----------
+  const denyItems = [
+    "користуватися нестандартними (без заземлення), несправними розетками живлення",
+    "при включеному ПК торкатися пристроїв заземлення, тильного боку монітора, проводів живлення і з'єднувальних кабелів",
+    "без відключення живлення відкривати корпуси, блоки ПК та периферійних пристроїв",
+    "самостійно проводити підключення та відключення блоків апаратури у навчальному комп'ютерному класі",
+    "порушувати порядок увімкнення й вимкнення апаратурних блоків, намагатися самостійно усунути виявлену несправність у роботі апаратури",
+    "класти на апаратуру сторонні предмети",
+    "працювати на ПК у вологій одежі і з вологими руками"
+  ];
+  const allowItems = [
+    "за наявності психічних хвороб, хвороб очей, нервової та серцево-судинної систем, інших хвороб, які можуть загострюватися при тривалому статичному напруженні органів зору та нервової системи, одержати консультацію лікаря та його дозвіл на роботу з ПК",
+    "дотримуватись положень інструкцій з експлуатації апаратури",
+    "домагатися достатнього освітлення робочого місця, низького рівня шуму, доброї провітрюваності приміщення",
+    "у разі появи запаху горілого, незвичайних звуків або самовільного вимкнення апаратури треба негайно вимкнути комп'ютер та повідомити викладача",
+    "верхній край монітора має бути розташований на рівні очей користувача або трохи нижче; екран має бути на відстані 60–70 см",
+    "зап'ястя рук не повинні бути вище ліктів; в ідеальному варіанті лікті мають бути під кутом 90°, зап'ястя випрямлені, а не підняті вгору чи опущені вниз",
+    "ступні ніг мають торкатися підлоги або підставки для ніг, а кут між спиною та стегнами повинен бути 90° або дещо більшим",
+    "тримати правильну поставу, не сутулитися і не нахилятися; доцільно використовувати спеціальні меблі для ПК",
+    "дотримуватися норм безперервної роботи на ПК: для дітей старшого шкільного віку — не більше 1,5 години, для викладачів та вчителів інформатики — не більш як 4 години на день",
+    "при тривалій роботі на ПК слід періодично (кожні 45 хв.) виконувати фізичні вправи для зняття статичної напруги тіла, втоми очей тощо",
+    "розпочинати роботу з ПК та завершувати її у встановленому порядку"
+  ];
+
+  function fillList(elId, items, icon, tab, prefix){
+    const ul = document.getElementById(elId);
+    items.forEach((text, i) => {
+      const li = document.createElement("li");
+      const rowId = `${prefix}-${i}`;
+      li.id = rowId;
+      li.innerHTML = `<span class="mark">${icon}</span><span>${text}</span>`;
+      ul.appendChild(li);
+      searchIndex.push({tab, elId:rowId, parentDetails:null, text});
+    });
+  }
+  fillList("deny-list", denyItems, denyIcon, "safety", "deny");
+  fillList("allow-list", allowItems, allowIcon, "safety", "allow");
+
+  // ---------- DATA: INTEGRITY ----------
+  const principles = [
+    {t:"Чесність", d:"Учень виконує завдання самостійно і чесно повідомляє про джерела та рівень власної допомоги."},
+    {t:"Довіра", d:"Оцінка, поставлена вчителем, і робота, здана учнем, відображають реальний рівень знань і зусиль."},
+    {t:"Справедливість", d:"Усі учні оцінюються за однаковими критеріями, без переваг, здобутих нечесним шляхом."},
+    {t:"Повага", d:"Чуже авторство — текст, код, зображення, ідея — визнається і коректно зазначається."},
+    {t:"Відповідальність", d:"Учень усвідомлює наслідки порушень і відповідає за результати власної роботи."},
+    {t:"Самостійність", d:"Практичні й контрольні роботи виконуються особисто, без стороннього виконання завдання «під ключ»."}
+  ];
+  const pGrid = document.getElementById("principle-grid");
+  principles.forEach((p, i) => {
+    const id = `principle-${i}`;
+    const card = document.createElement("div");
+    card.className = "principle-card";
+    card.id = id;
+    card.innerHTML = `<p class="p-title">${p.t}</p><p class="p-desc">${p.d}</p>`;
+    pGrid.appendChild(card);
+    searchIndex.push({tab:"integrity", elId:id, parentDetails:null, text:`${p.t} — ${p.d}`});
+  });
+
+  const badExamples = [
+    "списування або передавання відповідей під час контрольної чи самостійної роботи",
+    "плагіат — використання чужого коду, тексту чи проєкту без зазначення джерела",
+    "фальсифікація результатів практичної роботи або даних дослідження",
+    "виконання чи здача чужої роботи як власної (включно з готовими рішеннями з інтернету)"
+  ];
+  const goodExamples = [
+    "самостійне виконання практичних і контрольних робіт",
+    "коректне зазначення джерел коду, тексту чи ілюстрацій, якими скористалися",
+    "чесна взаємодія з однокласниками під час групових і командних проєктів",
+    "звернення по допомогу до вчителя замість використання нечесних способів"
+  ];
+  fillList("bad-list", badExamples, denyIcon, "integrity", "badex");
+  fillList("good-list", goodExamples, allowIcon, "integrity", "goodex");
+
+  // ---------- DATA: QUIZ ----------
+  const quiz = [
+    {q:"Скільки балів у найвищому (IV) рівні навчальних досягнень з інформатики?", opts:["9","10","11","12"], correct:3},
+    {q:"Яка напруга живлення в апаратурі ПК, небезпечна для життя?", opts:["110 В","220 В","380 В","12 В"], correct:1},
+    {q:"Через скільки хвилин безперервної роботи варто робити фізичні вправи?", opts:["20 хв","30 хв","45 хв","60 хв"], correct:2},
+    {q:"Яка рекомендована відстань очей до екрана монітора?", opts:["30–40 см","60–70 см","90–100 см","120+ см"], correct:1},
+    {q:"Що з переліченого є порушенням академічної доброчесності?", opts:["Самостійне виконання роботи","Плагіат без зазначення джерела","Звернення по допомогу до вчителя","Чесна співпраця в групі"], correct:1},
+    {q:"Скільки годин на день максимум може безперервно працювати за ПК вчитель інформатики?", opts:["1,5 год","2 год","4 год","6 год"], correct:2},
+    {q:"Якому рівню навчальних досягнень відповідають бали 7–9?", opts:["Початковий","Середній","Достатній","Високий"], correct:2},
+    {q:"Що категорично забороняється при увімкненому ПК?", opts:["Торкатися тильного боку монітора","Провітрювати кімнату","Робити перерву","Консультуватися з лікарем"], correct:0}
+  ];
+  const quizContainer = document.getElementById("quiz-container");
+  quiz.forEach((item, qi) => {
+    const block = document.createElement("div");
+    block.className = "quiz-q";
+    block.id = `quiz-${qi}`;
+    let optsHtml = item.opts.map((o, oi) => `
+      <label><input type="radio" name="q${qi}" value="${oi}"> ${o}</label>
+    `).join("");
+    block.innerHTML = `<p class="q-title">${qi+1}. ${item.q}</p>${optsHtml}<div class="q-feedback"></div>`;
+    quizContainer.appendChild(block);
+  });
+
+  document.getElementById("quiz-check").addEventListener("click", () => {
+    let score = 0;
+    quiz.forEach((item, qi) => {
+      const block = document.getElementById(`quiz-${qi}`);
+      const chosen = block.querySelector(`input[name="q${qi}"]:checked`);
+      block.classList.add("graded");
+      const fb = block.querySelector(".q-feedback");
+      block.classList.remove("correct","incorrect");
+      if(chosen && parseInt(chosen.value) === item.correct){
+        score++;
+        block.classList.add("correct");
+        fb.textContent = "Правильно.";
+      } else {
+        block.classList.add("incorrect");
+        fb.textContent = `Правильна відповідь: ${item.opts[item.correct]}.`;
+      }
+    });
+    document.getElementById("quiz-score").textContent = `Результат: ${score} / ${quiz.length}`;
+  });
+  document.getElementById("quiz-reset").addEventListener("click", () => {
+    quiz.forEach((item, qi) => {
+      const block = document.getElementById(`quiz-${qi}`);
+      block.classList.remove("graded","correct","incorrect");
+      block.querySelectorAll("input[type=radio]").forEach(r => r.checked = false);
+    });
+    document.getElementById("quiz-score").textContent = "";
+  });
+
+  // ---------- DATA: FAQ ----------
+  const faq = [
+    {q:"Оцінка виставляється лише за теоретичні знання?", a:"Ні. Оцінюються і теоретична база знань, і практичні навички — уміння застосовувати знання за комп'ютером."},
+    {q:"Чи можна самостійно ремонтувати комп'ютер у кабінеті?", a:"Ні, категорично заборонено самостійно відкривати корпуси апаратури чи усувати несправності — про будь-яку проблему потрібно повідомити вчителя."},
+    {q:"Що робити, якщо відчув запах горілого від ПК?", a:"Негайно вимкнути комп'ютер і повідомити викладача — так само і в разі незвичайних звуків чи самовільного вимкнення апаратури."},
+    {q:"Чим плагіат відрізняється від цитування?", a:"Цитування із зазначенням джерела — це нормальна академічна практика. Плагіат — це видавання чужого тексту, коду чи ідеї за власні, без посилання на автора."},
+    {q:"Скільки може тривати безперервна робота учня за комп'ютером?", a:"Не більше 1,5 години для дітей старшого шкільного віку; для вчителів інформатики — не більш як 4 години на день."},
+    {q:"Що буде за списування на контрольній?", a:"Залежить від внутрішніх правил закладу освіти — зазвичай це повторне виконання роботи, зниження оцінки або додаткове усне опитування."}
+  ];
+  const faqContainer = document.getElementById("faq-container");
+  faq.forEach((item, i) => {
+    const id = `faq-${i}`;
+    const details = document.createElement("details");
+    details.className = "faq-item";
+    details.id = id;
+    details.innerHTML = `<summary><span>${item.q}</span><span class="chev"></span></summary><div class="faq-a">${item.a}</div>`;
+    faqContainer.appendChild(details);
+    searchIndex.push({tab:"faq", elId:id, parentDetails:details, text:`${item.q} ${item.a}`});
+  });
+
+  // ---------- TAB SWITCHING ----------
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const panels = document.querySelectorAll(".panel");
+  function goToTab(tabName){
+    tabButtons.forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tabName ? "true" : "false"));
+    panels.forEach(p => p.classList.toggle("active", p.id === tabName));
+  }
+  tabButtons.forEach(btn => btn.addEventListener("click", () => { goToTab(btn.dataset.tab); window.scrollTo({top:0, behavior:"smooth"}); }));
+  document.querySelectorAll("[data-goto]").forEach(el => {
+    el.addEventListener("click", () => { goToTab(el.dataset.goto); window.scrollTo({top:0, behavior:"smooth"}); });
+  });
+
+  // ---------- TOAST ----------
+  let toastTimer;
+  function showToast(msg){
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+  }
+
+  // ---------- JUMP TO ELEMENT ----------
+  function jumpTo(tab, elId){
+    goToTab(tab);
+    requestAnimationFrame(() => {
+      const el = document.getElementById(elId);
+      if(!el) return;
+      if(el.closest("details")) el.closest("details").open = true;
+      el.scrollIntoView({behavior:"smooth", block:"center"});
+      el.classList.add("flash");
+      setTimeout(() => el.classList.remove("flash"), 1500);
+    });
+  }
+
+  // ---------- SEARCH ----------
+  const searchInput = document.getElementById("site-search");
+  const searchResults = document.getElementById("search-results");
+  const tabLabels = {grading:"Критерії", safety:"Робота з ПК", integrity:"Доброчесність", faq:"FAQ"};
+  searchInput.addEventListener("input", () => {
+    const q = searchInput.value.trim().toLowerCase();
+    if(q.length < 2){ searchResults.hidden = true; searchResults.innerHTML = ""; return; }
+    const matches = searchIndex.filter(item => item.text.toLowerCase().includes(q)).slice(0, 8);
+    searchResults.innerHTML = "";
+    if(matches.length === 0){
+      searchResults.innerHTML = `<div class="search-empty">Нічого не знайдено</div>`;
+    } else {
+      matches.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "search-item";
+        const snippet = m.text.length > 110 ? m.text.slice(0,110) + "…" : m.text;
+        div.innerHTML = `<span class="si-tab">${tabLabels[m.tab] || m.tab}</span><span class="si-text">${snippet}</span>`;
+        div.addEventListener("mousedown", () => { jumpTo(m.tab, m.elId); searchResults.hidden = true; searchInput.blur(); });
+        searchResults.appendChild(div);
+      });
+    }
+    searchResults.hidden = false;
+  });
+  searchInput.addEventListener("blur", () => setTimeout(() => { searchResults.hidden = true; }, 150));
+  searchInput.addEventListener("focus", () => { if(searchInput.value.trim().length >= 2) searchResults.hidden = false; });
+
+  // ---------- COPY LINK ----------
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".row-link");
+    if(!btn) return;
+    const hash = btn.dataset.copy;
+    const url = location.origin + location.pathname + hash;
+    history.replaceState(null, "", hash);
+    if(navigator.clipboard){ navigator.clipboard.writeText(url).then(() => showToast("Посилання скопійовано")); }
+    else { showToast("Посилання: " + url); }
+  });
+  document.getElementById("share-btn").addEventListener("click", () => {
+    const url = location.origin + location.pathname;
+    if(navigator.clipboard){ navigator.clipboard.writeText(url).then(() => showToast("Посилання на сайт скопійовано")); }
+    else { showToast(url); }
+  });
+
+  // ---------- PRINT ----------
+  document.getElementById("print-btn").addEventListener("click", () => window.print());
+
+  // ---------- THEME TOGGLE ----------
+  const themeToggle = document.getElementById("theme-toggle");
+  themeToggle.addEventListener("click", () => {
+    const html = document.documentElement;
+    const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    html.setAttribute("data-theme", next);
+  });
+
+  // ---------- FONT SIZE (ZOOM) ----------
+  const zoomLevels = [1, 1.12, 1.24];
+  let zoomIdx = 0;
+  const mainEl = document.querySelector("main");
+  function applyZoom(){ mainEl.style.zoom = zoomLevels[zoomIdx]; }
+  document.getElementById("fs-plus").addEventListener("click", () => { zoomIdx = Math.min(zoomIdx+1, zoomLevels.length-1); applyZoom(); });
+  document.getElementById("fs-minus").addEventListener("click", () => { zoomIdx = Math.max(zoomIdx-1, 0); applyZoom(); });
+
+  // ---------- PROGRESS BAR ----------
+  const progressBar = document.getElementById("progress-bar");
+  window.addEventListener("scroll", () => {
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const height = h.scrollHeight - h.clientHeight;
+    progressBar.style.width = height > 0 ? (scrolled / height * 100) + "%" : "0%";
+  });
+
+  // ---------- HASH DEEP-LINK ON LOAD ----------
+  window.addEventListener("DOMContentLoaded", () => {
+    const hash = location.hash.replace("#", "");
+    if(!hash) return;
+    if(hash.startsWith("grade-")){
+      jumpTo("grading", hash);
+    } else if(document.getElementById(hash) && document.querySelector(`.tab-btn[data-tab="${hash}"]`)){
+      goToTab(hash);
+    }
+  });
+</script>
+
+</body>
+</html>

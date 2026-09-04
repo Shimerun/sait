@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кабінет інформатики — довідник</title>
+  <meta name="description" content="Критерії оцінювання з інформатики, вимоги до роботи з ПК та принципи академічної доброчесності — в одному довіднику з пошуком і тестом-самоперевіркою.">
+  <meta property="og:title" content="Кабінет інформатики — довідник">
+  <meta property="og:description" content="Критерії оцінювання, техніка безпеки за ПК та академічна доброчесність для учнів і вчителів інформатики.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#16232B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2316232B'/%3E%3Ctext x='50' y='66' font-size='46' font-family='monospace' font-weight='700' fill='%23B8863B' text-anchor='middle'%3E%7B%7D%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <header class="site">
+    <svg class="circuit-deco" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#F1ECDD" stroke-width="1.4">
+        <path d="M20 40 H120 V90 H220"></path>
+        <path d="M40 120 H160 V180 H260"></path>
+        <path d="M10 200 H90 V240 H200"></path>
+        <path d="M180 20 V70 H260 V150"></path>
+      </g>
+      <g fill="#F1ECDD">
+        <circle cx="20" cy="40" r="4"></circle><circle cx="120" cy="90" r="4"></circle><circle cx="220" cy="90" r="4"></circle>
+        <circle cx="40" cy="120" r="4"></circle><circle cx="160" cy="180" r="4"></circle><circle cx="260" cy="180" r="4"></circle>
+        <circle cx="90" cy="240" r="4"></circle><circle cx="200" cy="240" r="4"></circle><circle cx="180" cy="20" r="4"></circle>
+        <circle cx="260" cy="70" r="4"></circle><circle cx="260" cy="150" r="4"></circle>
+      </g>
+    </svg>
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-mark">{ }</div>
+        <div class="brand-label">Кабінет інформатики · довідник</div>
+      </div>
+      <h1 class="site-title">Правила, критерії та доброчесність</h1>
+      <p class="site-sub">Три розділи, які варто знати кожному учню й учениці, плюс тест-самоперевірка та відповіді на часті питання.</p>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <div class="tabs-inner" role="tablist">
+      <button class="tab-btn" data-tab="home" role="tab" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Головна
+      </button>
+      <button class="tab-btn" data-tab="grading" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="14" width="4" height="6"></rect><rect x="10" y="9" width="4" height="11"></rect><rect x="16" y="4" width="4" height="16"></rect></svg>Критерії
+      </button>
+      <button class="tab-btn" data-tab="safety" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"></path><line x1="12" y1="10" x2="12" y2="14.5"></line><circle cx="12" cy="17.3" r="0.6" fill="currentColor" stroke="none"></circle></svg>Робота з ПК
+      </button>
+      <button class="tab-btn" data-tab="integrity" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.6 3.2 8.2 8 9 4.8-.8 8-4.4 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>Доброчесність
+      </button>
+      <button class="tab-btn" data-tab="quiz" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.6-2.2 2-2.2 3.6"></path><circle cx="12.1" cy="16.8" r="0.6" fill="currentColor" stroke="none"></circle></svg>Тест
+      </button>
+      <button class="tab-btn" data-tab="faq" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"></path></svg>FAQ
+      </button>
+    </div>
+    <div class="utility-bar">
+      <div class="search-wrap">
+        <input type="search" id="site-search" placeholder="Пошук по сайту…" autocomplete="off">
+        <div class="search-results" id="search-results" hidden></div>
+      </div>
+      <div class="fs-group" title="Розмір тексту">
+        <button id="fs-minus" aria-label="Зменшити текст">A−</button>
+        <button id="fs-plus" aria-label="Збільшити текст">A+</button>
+      </div>
+      <button class="util-btn" id="theme-toggle" title="Темна/світла тема">
+        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <button class="util-btn" id="print-btn" title="Роздрукувати">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      </button>
+      <button class="util-btn" id="share-btn" title="Поділитися посиланням">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"></line><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"></line></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="panel active">
+      <div class="home-hero">
+        <h2>Довідник кабінету інформатики</h2>
+        <p>Цей сайт зібрав в одному місці офіційну шкалу оцінювання, правила безпечної роботи з комп'ютером і принципи академічної доброчесності. Скористайтеся пошуком угорі, пройдіть тест-самоперевірку або перегляньте відповіді на часті питання.</p>
+      </div>
+      <div class="home-tri-rule"></div>
+
+      <div class="home-stats">
+        <div class="stat-card"><span class="num">12</span><span class="label">балів у шкалі навчальних досягнень, 4 рівні</span></div>
+        <div class="stat-card"><span class="num">7</span><span class="label">дій, заборонених під час роботи з ПК</span></div>
+        <div class="stat-card"><span class="num">6</span><span class="label">принципів академічної доброчесності</span></div>
+      </div>
+
+      <div class="home-cards">
+        <div class="home-card" data-goto="grading">
+          <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="14" width="4" height="6"></rect><rect x="10" y="9" width="4" height="11"></rect><rect x="16" y="4" width="4" height="16"></rect></svg></div>
+          <h3>Критерії оцінювання</h3>
+          <p>Що саме оцінюється на уроках інформатики і як улаштована шкала від 1 до 12 балів.</p>
+          <span class="hc-go">Відкрити розділ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </div>
+        <div class="home-card" data-goto="safety">
+          <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"></path><line x1="12" y1="10" x2="12" y2="14.5"></line><circle cx="12" cy="17.3" r="0.6" fill="currentColor" stroke="none"></circle></svg></div>
+          <h3>Робота з ПК</h3>
+          <p>Небезпека 220 В, що категорично заборонено за комп'ютером і як організувати робоче місце.</p>
+          <span class="hc-go">Відкрити розділ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </div>
+        <div class="home-card" data-goto="integrity">
+          <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.6 3.2 8.2 8 9 4.8-.8 8-4.4 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+          <h3>Доброчесність</h3>
+          <p>Що таке академічна доброчесність, чим списування відрізняється від співпраці і чим це загрожує.</p>
+          <span class="hc-go">Відкрити розділ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </div>
+      </div>
+
+      <div class="home-extra-row">
+        <div class="home-mini-link" data-goto="quiz">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.6-2.2 2-2.2 3.6"></path></svg>
+          Пройти тест-самоперевірку (8 запитань)
+        </div>
+        <div class="home-mini-link" data-goto="faq">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"></path></svg>
+          Часті питання
+        </div>
+      </div>
+    </section>
+
+    <section id="grading" class="panel">
+      <div class="panel-head">
+        <span class="panel-kicker">Оцінювання</span>
+        <h2 class="panel-title">Критерії оцінювання навчальних досягнень учнів з інформатики</h2>
+        <p class="panel-intro">До навчальних досягнень учнів з інформатики, які підлягають оцінюванню, належить <strong>теоретична база знань</strong> і <strong>практичні навички</strong>. Оцінювання здійснюється у двох аспектах: рівень володіння теоретичними знаннями та здатність застосовувати вивчений матеріал у практичній діяльності.</p>
+      </div>
+
+      <h3 class="block-title">Теоретична база знань</h3>
+      <p class="block-lead">Уявлення про інформацію, її властивості, інформаційні процеси та інформаційні системи, загальні принципи розв'язування задач за допомогою комп'ютера з використанням програмного забезпечення загального та конкретно-предметного призначення, формулювання проблем і постановку задач, побудову відповідних інформаційних моделей, основи алгоритмізації і програмування, принципи будови та дії комп'ютера, уявлення про можливості використання глобальної мережі Інтернет, пошук потрібних відомостей.</p>
+
+      <h3 class="block-title">Практичні навички</h3>
+      <p class="block-lead">Навички роботи з пристроями введення-виведення даних, прикладним програмним забезпеченням загального і навчального призначення — програмами технічного обслуговування апаратної складової, операційними системами, програмами для архівування файлів, антивірусними програмами, редакторами текстів, графічними редакторами, засобами підготовки комп'ютерних презентацій та публікацій, табличними процесорами, системами управління базами даних, інформаційно-пошуковими системами, експертними системами, мультимедійними комп'ютерними енциклопедіями, педагогічними програмними засобами для комп'ютерної підтримки навчання з різних предметів, програмами-браузерами для перегляду гіпертекстових сторінок, програмами для роботи з електронною поштою та телеконференціями, пошуку потрібних відомостей в глобальній мережі Інтернет, створення гіпертекстових сторінок тощо; навички складання, описування та реалізації найпростіших алгоритмів і програм з використанням різних засобів їх подання, зокрема деякої мови програмування.</p>
+
+      <h3 class="block-title">Чотири рівні навчальних досягнень</h3>
+      <p class="block-lead">Відповідно до ступеня оволодіння знаннями і способами діяльності виокремлюються чотири рівні навчальних досягнень школярів з інформатики. Досягнення певного рівня передбачає, що всі знання, уміння й навички, вказані для попередніх рівнів, учнем уже опановані.</p>
+
+      <div id="levels-container"></div>
+    </section>
+
+    <section id="safety" class="panel">
+      <div class="panel-head">
+        <span class="panel-kicker">Техніка безпеки</span>
+        <h2 class="panel-title">Вимоги до роботи з персональним комп'ютером</h2>
+      </div>
+
+      <div class="voltage-note">
+        <div class="voltage-note-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"></path></svg>
+          <p>Апаратура ПК використовує напругу живлення <strong>220 В</strong>, яка є небезпечною для життя людини. Необхідно знати та чітко виконувати ряд правил техніки безпеки.</p>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card"><span class="num">60–70 см</span><span class="label">відстань очей до екрана монітора</span></div>
+        <div class="stat-card"><span class="num">90°</span><span class="label">кут у ліктях, колінах і стегнах</span></div>
+        <div class="stat-card"><span class="num">45 хв</span><span class="label">інтервал для фізичних вправ</span></div>
+        <div class="stat-card"><span class="num">1,5 год</span><span class="label">макс. безперервна робота учня (вчителя — до 4 год)</span></div>
+      </div>
+
+      <h3 class="block-title">При роботі з ПК забороняється</h3>
+      <ul class="rule-list deny" id="deny-list"></ul>
+
+      <h3 class="block-title">Для роботи на комп'ютері необхідно</h3>
+      <ul class="rule-list allow" id="allow-list"></ul>
+    </section>
+
+    <section id="integrity" class="panel">
+      <div class="panel-head">
+        <span class="panel-kicker">Доброчесність</span>
+        <h2 class="panel-title">Принципи академічної доброчесності</h2>
+        <p class="panel-intro">Академічна доброчесність — це сукупність етичних принципів і правил, якими мають керуватися учасники освітнього процесу під час навчання, викладання та провадження наукової (творчої) діяльності. Вона є основою довіри між учнем, учителем і школою.</p>
+      </div>
+
+      <h3 class="block-title">Основні принципи</h3>
+      <div class="principle-grid" id="principle-grid"></div>
+
+      <h3 class="block-title">Приклади на практиці</h3>
+      <div class="two-col">
+        <div class="col-card bad"><h4>Порушення</h4><ul class="rule-list deny" id="bad-list"></ul></div>
+        <div class="col-card good"><h4>Дотримання</h4><ul class="rule-list allow" id="good-list"></ul></div>
+      </div>
+
+      <div class="consequence-strip">
+        <h4>Наслідки порушення</h4>
+        <p>Списування, плагіат чи фальсифікація результатів фіксуються вчителем і можуть призвести до повторного виконання роботи, зниження оцінки чи додаткового опитування — залежно від тяжкості порушення та внутрішніх правил закладу освіти. Головна мета правил доброчесності — не покарання, а формування звички навчатися чесно.</p>
+      </div>
+    </section>
+
+    <section id="quiz" class="panel">
+      <div class="panel-head">
+        <span class="panel-kicker">Самоперевірка</span>
+        <h2 class="panel-title">Тест: перевір себе</h2>
+        <p class="panel-intro">8 запитань за матеріалами всіх трьох розділів. Оберіть відповідь і натисніть «Перевірити результат».</p>
+      </div>
+      <div id="quiz-container"></div>
+      <div class="quiz-actions">
+        <button class="quiz-btn" id="quiz-check">Перевірити результат</button>
+        <button class="quiz-btn secondary" id="quiz-reset">Спробувати ще раз</button>
+        <span id="quiz-score"></span>
+      </div>
+    </section>
+
+    <section id="faq" class="panel">
+      <div class="panel-head">
+        <span class="panel-kicker">Часті питання</span>
+        <h2 class="panel-title">FAQ</h2>
+      </div>
+      <div id="faq-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <strong>Джерела.</strong> Розділ «Критерії оцінювання» — за офіційними критеріями оцінювання навчальних досягнень учнів з інформатики (інформаційних технологій) у системі загальної освіти. Розділ «Робота з ПК» — за типовими вимогами техніки безпеки під час роботи з персональним комп'ютером. Розділ «Доброчесність» підготовлено на основі загальних принципів академічної доброчесності (ст. 42 Закону України «Про освіту») й адаптовано для шкільного курсу інформатики.
+    </div>
+  </footer>
+
+  <div id="toast"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
