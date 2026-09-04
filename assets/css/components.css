@@ -1,13 +1,13 @@
 .home-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 18px;
   margin-bottom: 8px;
 }
 
 .home-card {
   position: relative;
-  background: var(--paper-raised);
+  background: linear-gradient(180deg, rgba(255,255,255,.5), var(--paper-raised));
   border: 1px solid var(--line);
   border-top: 3px solid transparent;
   border-radius: var(--radius);
@@ -17,22 +17,24 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform .18s ease, box-shadow .18s ease;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  box-shadow: var(--shadow-card);
 }
 .home-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 28px rgba(22,35,43,.12);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px rgba(22,35,43,.12);
 }
 .home-card[data-goto="grading"] { border-top-color: var(--gold); }
 .home-card[data-goto="safety"] { border-top-color: var(--red); }
 .home-card[data-goto="integrity"] { border-top-color: var(--green); }
 .home-card .hc-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
 }
 .home-card .hc-icon svg { width: 18px; height: 18px; }
 .home-card[data-goto="grading"] .hc-icon { background: rgba(184,134,59,.14); color: var(--gold-deep); }
@@ -40,13 +42,14 @@
 .home-card[data-goto="integrity"] .hc-icon { background: rgba(63,108,81,.13); color: var(--green-deep); }
 .home-card h3 {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 600;
   margin: 0;
+  letter-spacing: -.02em;
 }
 .home-card p {
   font-size: 14px;
-  line-height: 1.56;
+  line-height: 1.62;
   color: var(--text-soft);
   margin: 0;
   flex: 1;
@@ -77,16 +80,21 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--paper-raised);
+  background: rgba(255,255,255,.25);
   border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 9px 16px;
+  border-radius: 999px;
+  padding: 10px 18px;
   font-size: 13.5px;
   font-weight: 600;
   color: var(--text);
   cursor: pointer;
+  transition: all .18s ease;
+  box-shadow: var(--shadow-card);
 }
-.home-mini-link:hover { border-color: var(--gold); }
+.home-mini-link:hover {
+  border-color: rgba(184,134,59,.38);
+  transform: translateY(-1px);
+}
 .home-mini-link svg {
   width: 15px;
   height: 15px;
